@@ -1,6 +1,6 @@
 # coding:utf-8
 from django.contrib import admin
-from .models import Show_Data,IP,URL,Other_Url,Error_Log,Cpu_Min,Domains,Setting,Content,BLACKURL
+from .models import Show_Data, IP, URL, Other_Url, Error_Log, Cpu_Min, Domains, Setting, Content, BLACKURL
 admin.site.register(Show_Data)
 admin.site.register(IP)
 admin.site.register(URL)
@@ -14,26 +14,41 @@ admin.site.register(BLACKURL)
 from xadmin import views
 import xadmin
 
+
 class GlobalSetting(object):
     # 设置后台顶部标题
-    site_title ='LangSrc资产监控系统'
+    site_title = 'LangSrc资产监控系统'
     # 设置后台底部标题
-    site_footer ='Powered By LangziFun'
+    site_footer = 'Powered By LangziFun'
     menu_style = "accordion"
     # # 设置左侧菜单可折叠
+
+
 xadmin.site.register(views.CommAdminView, GlobalSetting)
 
+
 class BaseSetting(object):
-     """主题配置"""
-     enable_themes = True
-     use_bootswatch = True
+    """主题配置"""
+    enable_themes = True
+    use_bootswatch = True
+
+
 xadmin.site.register(views.BaseAdminView, BaseSetting)
+
 
 class x_show_data(object):
     """设置显示字段"""
-    list_display = ['uid','url','title','power','server','status','ip','cs','area','servers','alive_urls','host_type','belong_domain','success','check','change_time']
+    list_display = [
+        'uid', 'url', 'title', 'power', 'server', 'status', 'ip', 'cs', 'area',
+        'servers', 'alive_urls', 'host_type', 'belong_domain', 'success',
+        'check', 'change_time'
+    ]
     model_icon = 'fa fa-flag'
-    search_fields = ['url','title','power','server','status','ip','cs','area','servers','alive_urls','host_type','belong_domain','success','check','change_time']
+    search_fields = [
+        'url', 'title', 'power', 'server', 'status', 'ip', 'cs', 'area',
+        'servers', 'alive_urls', 'host_type', 'belong_domain', 'success',
+        'check'
+    ]
     refresh_times = (30, 60)
     # list_bookmarks = [{
     #     'title': "北京",  # 书签的名称, 显示在书签菜单中
@@ -54,12 +69,17 @@ class x_show_data(object):
     # y-field : 图表的 Y 轴数据列, 该项是一个list, 可以同时设定多个列, 这样多个列的数据会在同一个图表中显示
     # order : 排序信息, 如果不写则使用数据列表的排序
 
-xadmin.site.register(Show_Data,x_show_data)
+
+xadmin.site.register(Show_Data, x_show_data)
+
 
 class x_domains(object):
-    list_display = ['uid','url','BA_id','BA_sex','BA_name','counts','curise','change_time']
+    list_display = [
+        'uid', 'url', 'BA_id', 'BA_sex', 'BA_name', 'counts', 'curise',
+        'change_time'
+    ]
     model_icon = 'fa fa-camera-retro'
-    search_fields = ["url",'BA_id','BA_sex','BA_name','counts','curise','change_time']
+    search_fields = ["url", 'BA_id', 'BA_sex', 'BA_name', 'counts', 'curise']
     refresh_times = (10, 20)
     # list_bookmarks = [{
     #     'title': "京东数据",  # 书签的名称, 显示在书签菜单中
@@ -75,13 +95,19 @@ class x_domains(object):
     # }
 
 
-xadmin.site.register(Domains,x_domains)
+xadmin.site.register(Domains, x_domains)
+
 
 class x_ip(object):
-    list_display = ['uid','ip','servers','host_type','alive_urls','area','cs','get','change_time']
+    list_display = [
+        'uid', 'ip', 'servers', 'host_type', 'alive_urls', 'area', 'cs', 'get',
+        'change_time'
+    ]
     model_icon = 'fa fa-linux'
 
-    search_fields = ['uid','ip','servers','host_type','alive_urls','area','cs','get','change_time']
+    search_fields = [
+        'uid', 'ip', 'servers', 'host_type', 'alive_urls', 'area', 'cs', 'get'
+    ]
     refresh_times = (30, 60)
 
     # data_charts = {
@@ -92,75 +118,84 @@ class x_ip(object):
     # }
 
 
-xadmin.site.register(IP,x_ip)
+xadmin.site.register(IP, x_ip)
+
 
 class x_url(object):
-    list_display = ['uid','url','ip','get','change_time']
+    list_display = ['uid', 'url', 'ip', 'get', 'change_time']
     model_icon = 'fa fa-book'
-    search_fields =['url','ip','get','change_time']
+    search_fields = ['url', 'ip', 'get']
     refresh_times = (30, 60)
 
 
-xadmin.site.register(URL,x_url)
+xadmin.site.register(URL, x_url)
+
 
 class x_other(object):
-    list_display = ['uid','url','title','power','server','status','ip','change_time']
+    list_display = [
+        'uid', 'url', 'title', 'power', 'server', 'status', 'ip', 'change_time'
+    ]
     model_icon = 'fa fa-cloud'
-    search_fields =['url','title','power','server','status','ip','change_time']
+    search_fields = ['url', 'title', 'power', 'server', 'status', 'ip']
     refresh_times = (30, 60)
 
 
-xadmin.site.register(Other_Url,x_other)
+xadmin.site.register(Other_Url, x_other)
+
 
 class x_blackurl(object):
-    list_display = ['uid','url','title','ip','resons','change_time']
+    list_display = ['uid', 'url', 'title', 'ip', 'resons', 'change_time']
     model_icon = 'fa fa-linux'
-    search_fields =['url','title','ip','resons','change_time']
+    search_fields = ['url', 'title', 'ip', 'resons']
     refresh_times = (30, 60)
 
 
-xadmin.site.register(BLACKURL,x_blackurl)
+xadmin.site.register(BLACKURL, x_blackurl)
 
 
 class x_content(object):
-    list_display = ['url','content','change_time']
+    list_display = ['url', 'content', 'change_time']
     model_icon = 'fa fa-book'
-    search_fields =['url','content','change_time']
+    search_fields = ['url', 'content']
     refresh_times = (30, 60)
 
 
-xadmin.site.register(Content,x_content)
+xadmin.site.register(Content, x_content)
+
+
 class x_cpu(object):
-    list_display = ['uid','cpu','menory','network_send','network_recv','change_time']
+    list_display = [
+        'uid', 'cpu', 'menory', 'network_send', 'network_recv', 'change_time'
+    ]
     model_icon = 'fa fa-spinner fa-spin'
-    search_fields =['cpu','menory','network_send','network_recv','change_time']
+    search_fields = ['cpu', 'menory', 'network_send', 'network_recv']
     refresh_times = (30, 60)
 
 
-xadmin.site.register(Cpu_Min,x_cpu)
-
+xadmin.site.register(Cpu_Min, x_cpu)
 
 
 class x_error(object):
-    list_display = ['uid','url','error','change_time']
+    list_display = ['uid', 'url', 'error', 'change_time']
     model_icon = 'fa fa-shield'
-    search_fields = ['url','error','change_time']
+    search_fields = ['url', 'error']
     refresh_times = (30, 60)
 
 
-xadmin.site.register(Error_Log,x_error)
-
+xadmin.site.register(Error_Log, x_error)
 
 
 class x_setting(object):
-    list_display = ['name','Alive_Code','Thread','Pool','processes','childconcurrency','change_time']
+    list_display = [
+        'name', 'Alive_Code', 'Thread', 'Pool', 'processes',
+        'childconcurrency', 'change_time'
+    ]
     model_icon = 'fa fa-pencil'
-    search_fields =['name','Alive_Code','Thread','Pool','processes','childconcurrency','change_time']
+    search_fields = [
+        'name', 'Alive_Code', 'Thread', 'Pool', 'processes', 'childconcurrency'
+    ]
     refresh_times = (30, 60)
 
-xadmin.site.register(Setting,x_setting)
 
-
-
-
+xadmin.site.register(Setting, x_setting)
 
