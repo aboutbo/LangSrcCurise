@@ -27,4 +27,4 @@ pymysql==0.9.3
 tinydb==3.15.1
 bs4==0.0.1
 schedule==0.6.0
-XlsxWriter=1.2.8
+XlsxWriter==1.2.8
